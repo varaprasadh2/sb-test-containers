@@ -1,4 +1,4 @@
-package dev.danvega.danson.post;
+package dev.test_containers.post;
 
 import java.util.List;
 

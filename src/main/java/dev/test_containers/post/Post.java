@@ -1,4 +1,4 @@
-package dev.danvega.danson.post;
+package dev.test_containers.post;
 
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;

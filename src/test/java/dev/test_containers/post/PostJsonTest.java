@@ -1,4 +1,6 @@
-package dev.danvega.danson.post;
+package dev.test_containers.post;
+
+import static org.junit.Assert.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,30 +18,33 @@ public class PostJsonTest {
     @Test
     void shouldSerializePost() throws Exception {
         Post post = new Post(1,1,"Hello, World!", "This is my first post.",null);
-        String expected = STR."""
+
+        String expected = String.format("""
                 {
-                    "id":\{post.id()},
-                    "userId":\{post.userId()},
-                    "title":"\{post.title()}",
-                    "body":"\{post.body()}",
+                    "id":%d,
+                    "userId":%d,
+                    "title":"%s",
+                    "body":"%s",
                     "version": null
                 }
-                """;
+                """, post.id(), post.userId(), post.title(), post.body());
+
         assertThat(jacksonTester.write(post)).isEqualToJson(expected);
     }
 
     @Test
     void shouldDeserializePost() throws Exception {
         Post post = new Post(1,1,"Hello, World!", "This is my first post.",null);
-        String content = STR."""
+
+        String content = String.format("""
                 {
-                    "id":\{post.id()},
-                    "userId":\{post.userId()},
-                    "title":"\{post.title()}",
-                    "body":"\{post.body()}",
+                    "id":%d,
+                    "userId":%d,
+                    "title":"%s",
+                    "body":"%s",
                     "version": null
                 }
-                """;
+                """, post.id(), post.userId(), post.title(), post.body());
 
         assertThat(jacksonTester.parse(content)).isEqualTo(post);
         assertThat(jacksonTester.parseObject(content).id()).isEqualTo(1);

@@ -1,4 +1,4 @@
-package dev.danvega.danson.post;
+package dev.test_containers.post;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
